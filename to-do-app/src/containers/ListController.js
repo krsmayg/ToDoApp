@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import ToDoInput from './../components/Inputs/ToDoInput';
-import SubjectsList from '../components/SubjectsList/SubjectsList'
-const ListController = () => {
+import SubjectsList from '../components/SubjectsList/SubjectsList';
+import {connect} from 'react-redux';
+import {fetchTasks} from '../actions/index'
+
+const ListController = (props) => {
   const [subjectList, setSubjectList] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [completedList, setCompletedList] = useState([]);
+  useEffect(() => {
+    props.fetchTasks();
+    console.log("Hello ")
+  },[])
 
   const addSubject = () => {
     console.log(inputValue);
     const list = [...subjectList]
     list.push(inputValue);
-    setSubjectList(list); + EsLint
+    setSubjectList(list);
     console.log(subjectList)
   }
   const handleInput = (event) => {
@@ -70,7 +77,7 @@ const ListController = () => {
   );
 }
 
-export default ListController;
+export default connect(null,{fetchTasks})(ListController);
 
 /*
  1. List Controller должен содержать таки методы как AddItemToList DeleteItemFromList UpdateItem

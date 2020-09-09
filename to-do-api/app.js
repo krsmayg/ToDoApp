@@ -3,16 +3,14 @@ const toDoListRouter = require('./routes/toDoListRouter');
 const morgan = require('morgan');
 const Task = require('./models/TasksModel');
 const app = express();
+const cors = require('cors')
 // console.log(process.env.NODE_ENV);
 if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
 app.use(express.json());
-app.use((req, res,next) => {
-  console.log('Hello from Midlleware');
-  next();
-})
+app.use(cors({origin:`http://localhost:${3000 || 3001}`, credentials: true}));
 
 const testTask = new Task({
   name: 'Go to the store'
