@@ -8,7 +8,7 @@ const SubjectListItem = (props) => {
       <div key={props.indexItem} className="transition duration-200 ease-in border-solid border-b border-gray-400 px-4 py-3 transform hover:-translate-y-1 mt-2 flex justify-between items-center" id={`itemList-${props.indexItem}`}>
         <div className="flex items-center ">
         <label className="custom-container" onClick={(event) => props.completeItem(event, props.indexItem)}> 
-          <input type="checkbox" class="checkbox"/>
+          <input type="checkbox" className="checkbox"/>
           <span className="check-mark"></span>
         </label>
         <p className="ml-2">{props.name}</p>

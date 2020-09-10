@@ -2,30 +2,32 @@ import React, { useState,useEffect } from 'react';
 import ToDoInput from './../components/Inputs/ToDoInput';
 import SubjectsList from '../components/SubjectsList/SubjectsList';
 import {connect} from 'react-redux';
-import {fetchTasks} from '../actions/index'
+import {fetchTasks, createTask} from '../actions/index'
 
 const ListController = (props) => {
-  const [subjectList, setSubjectList] = useState([]);
+  // const [subjectList, setSubjectList] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [completedList, setCompletedList] = useState([]);
   useEffect(() => {
     props.fetchTasks();
-    console.log("Hello ")
   },[])
+  useEffect(() => {
+    console.log("Pick")
+  })
 
   const addSubject = () => {
-    console.log(inputValue);
-    const list = [...subjectList]
-    list.push(inputValue);
-    setSubjectList(list);
-    console.log(subjectList)
+    // const list = [...subjectList]
+    // list.push(inputValue);
+    // setSubjectList(list);
+    // console.log(subjectList);
+    
+    props.createTask(inputValue);
   }
   const handleInput = (event) => {
     const input = event.target.value;
     setInputValue(input);
   }
   const deleteSubject = (id) => {
-    console.log('Delete me: ' + id);
     const list = [...subjectList];
     const newList = list.filter((item, index) => index !== id);
     setSubjectList(newList);
@@ -64,7 +66,7 @@ const ListController = (props) => {
           <button onClick={addSubject} className="transition duration-500 ease-in-out bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 ...">Add</button>
         </div>
         <SubjectsList
-          arrList={subjectList}
+          arrList={props.tasks}
           deleteHandler={deleteSubject}
           updateHandler={updateSubject}
           completeHandler={addToCompleteList} />
@@ -76,8 +78,12 @@ const ListController = (props) => {
     </div>
   );
 }
-
-export default connect(null,{fetchTasks})(ListController);
+const mapStateToProps = (state) =>{
+  return {
+    tasks: state.tasks
+  }
+}
+export default connect(mapStateToProps,{fetchTasks,createTask })(ListController);
 
 /*
  1. List Controller должен содержать таки методы как AddItemToList DeleteItemFromList UpdateItem
