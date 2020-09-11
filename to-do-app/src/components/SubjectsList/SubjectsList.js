@@ -1,7 +1,6 @@
 import React from 'react';
 import SubjectListItem from './SubjectListItem/SubjectListItem'
 const SubjectsList = (props) => {
-  console.log("RECIEVED ITEMS IN SUBJECTLIST: ", props.arrList);
   let listItems = 'Loading';
   let arr = props.arrList['tasks']
   if(arr) {

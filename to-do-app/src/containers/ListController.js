@@ -20,8 +20,7 @@ const ListController = (props) => {
     setInputValue(input);
   }
   const deleteSubject = (id) => {
-    // const list = [...subjectList];
-    // const newList = list.filter((item, index) => index !== id);
+ 
     props.deleteTask(id);
   }
   const updateSubject = (event, id) => {

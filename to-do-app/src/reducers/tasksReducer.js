@@ -21,10 +21,14 @@ export default (state = [], action) => {
       }
     case UPDATE_TASK:
        let updatedState = [...state.tasks];
-       console.log('UPDATED ID : ', action.payload.id)
-       updatedState[action.payload.id] = action.payload.name;
+       let updatedTask = {}
+       updatedState.filter(item => item._id == action.payload.id).map(task => {
+          updatedTask = {...task}
+        });
+      updatedTask.name  = action.payload.updatedTask;
+      updatedState = updatedState.map(task => task._id === updatedTask._id ? updatedTask : task);
        return {
-         tasks: updatedState
+        tasks: updatedState
        }
     default: return state;
   }
