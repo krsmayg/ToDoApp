@@ -1,24 +1,31 @@
-import {FETCH_TASKS, CREATE_TASK} from "../actions/actionTypes";
+import {FETCH_TASKS, CREATE_TASK, DELETE_TASK, UPDATE_TASK} from "../actions/actionTypes";
 
 export default (state = [], action) => {
   switch (action.type) {
     case FETCH_TASKS:
-      console.log("PAYLOAD FROM REDUCER FETCH_TASK:", action.payload);
-      console.log("STATE FROM REDUCER FETCH:", state.tasks); 
-      console.log( typeof action.payload)
       return {
         ...state,
         tasks: action.payload
       }
     case CREATE_TASK:
-      console.log("PAYLOAD FROM REDUCER CREATE_TASK:", action.payload);
-      console.log("STATE FROM REDUCER:", state.tasks);
-      const prevState = [...state.tasks];
-      console.log( typeof prevState);
-      prevState.push(action.payload);
+      let createState = [...state.tasks];
+      createState.push(action.payload);
       return {
-        tasks: prevState
+        tasks: createState
       }
+    case DELETE_TASK:
+      let deleteState = [...state.tasks];
+      deleteState = deleteState.filter(item => item._id !== action.payload)
+      return {
+        tasks: deleteState
+      }
+    case UPDATE_TASK:
+       let updatedState = [...state.tasks];
+       console.log('UPDATED ID : ', action.payload.id)
+       updatedState[action.payload.id] = action.payload.name;
+       return {
+         tasks: updatedState
+       }
     default: return state;
   }
 }

@@ -1,6 +1,5 @@
 import axiosData from '../api/axiosConfig';
-import axios from 'axios'
-import {FETCH_TASKS,CREATE_TASK} from '../actions/actionTypes';
+import {FETCH_TASKS,CREATE_TASK,DELETE_TASK, UPDATE_TASK} from '../actions/actionTypes';
 
 export const fetchTasks = () => async dispatch => {
     let tasks = [];
@@ -18,3 +17,13 @@ export const createTask = (newTask) => async dispatch => {
   dispatch({ type: CREATE_TASK, payload: task });
 }
 
+export const deleteTask = (id) => async dispatch => {
+  await axiosData.delete(`/toDoList/${id}`);
+  dispatch({ type: DELETE_TASK, payload: id });
+}
+export const updateTask = (id, updatedTask) => async dispatch => {
+  await axiosData.patch(`/toDoList/${id}`, {
+    name: updatedTask
+  });
+  dispatch({ type: UPDATE_TASK, payload: {id , updatedTask} });
+}

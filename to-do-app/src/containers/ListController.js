@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import ToDoInput from './../components/Inputs/ToDoInput';
 import SubjectsList from '../components/SubjectsList/SubjectsList';
 import {connect} from 'react-redux';
-import {fetchTasks, createTask} from '../actions/index'
+import {fetchTasks, createTask,deleteTask,updateTask} from '../actions/index'
 
 const ListController = (props) => {
   // const [subjectList, setSubjectList] = useState([]);
@@ -11,16 +11,8 @@ const ListController = (props) => {
   useEffect(() => {
     props.fetchTasks();
   },[])
-  useEffect(() => {
-    console.log("Pick")
-  })
 
   const addSubject = () => {
-    // const list = [...subjectList]
-    // list.push(inputValue);
-    // setSubjectList(list);
-    // console.log(subjectList);
-    
     props.createTask(inputValue);
   }
   const handleInput = (event) => {
@@ -28,15 +20,16 @@ const ListController = (props) => {
     setInputValue(input);
   }
   const deleteSubject = (id) => {
-    const list = [...subjectList];
-    const newList = list.filter((item, index) => index !== id);
-    setSubjectList(newList);
+    // const list = [...subjectList];
+    // const newList = list.filter((item, index) => index !== id);
+    props.deleteTask(id);
   }
   const updateSubject = (event, id) => {
     const newName = event.target.value;
-    let list = [...subjectList];
-    list[id] = newName;
-    setSubjectList(list);
+    // let list = [...subjectList];
+    // list[id] = newName;
+    // setSubjectList(list);
+    props.updateTask(id, newName);
   }
   const addToCompleteList = (event, id) => {
     const list = [...subjectList];
@@ -83,7 +76,7 @@ const mapStateToProps = (state) =>{
     tasks: state.tasks
   }
 }
-export default connect(mapStateToProps,{fetchTasks,createTask })(ListController);
+export default connect(mapStateToProps,{fetchTasks,createTask,deleteTask,updateTask })(ListController);
 
 /*
  1. List Controller должен содержать таки методы как AddItemToList DeleteItemFromList UpdateItem
