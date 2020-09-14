@@ -20,29 +20,26 @@ const ListController = (props) => {
     setInputValue(input);
   }
   const deleteSubject = (id) => {
- 
     props.deleteTask(id);
   }
   const updateSubject = (event, id) => {
     const newName = event.target.value;
-    // let list = [...subjectList];
-    // list[id] = newName;
-    // setSubjectList(list);
     props.updateTask(id, newName);
   }
-  const addToCompleteList = (event, id) => {
-    const list = [...subjectList];
-    const completeListCopy = [...completedList];
-    completeListCopy.push(list[id]);
-    const newList = list.filter((item, index) => index !== id);
-    const el = document.getElementById(`itemList-${id}`)
-    el.className += " " + 'fade-out';
 
-    setTimeout(() => {
-      el.classList.remove('fade-out');
-      setSubjectList(newList);
-      setCompletedList(completeListCopy);
-    }, 2000);
+  const addToCompleteList = (event, id) => {
+    // const list = [...props.tasks];
+    // const completeListCopy = [...completedList];
+    // completeListCopy.push(list[id]);
+    // const newList = list.filter((item, index) => index !== id);
+    // const el = document.getElementById(`itemList-${id}`)
+    // el.className += " " + 'fade-out';
+
+    // setTimeout(() => {
+    //   el.classList.remove('fade-out');
+    //   setSubjectList(newList);
+    //   setCompletedList(completeListCopy);
+    // }, 2000);
 
   }
   const renderCompleteTasks = () => {
@@ -63,10 +60,10 @@ const ListController = (props) => {
           updateHandler={updateSubject}
           completeHandler={addToCompleteList} />
       </div>
-      <div className="w-1/5 bg-white px-10 py-10 rounded h-full min-h-400 ml-4">
+      {/* <div className="w-1/5 bg-white px-10 py-10 rounded h-full min-h-400 ml-4">
         <h1 className="text-lg font-black">Completed Tasks</h1>
         {renderCompleteTasks()}
-      </div>
+      </div> */}
     </div>
   );
 }
