@@ -49,7 +49,7 @@ const ListController = (props) => {
   }
   return (
     <div className="flex justify-center  mt-20">
-      <div className="w-2/5 bg-white px-10 py-10 rounded h-full min-h-400">
+      <div className="w-2/5  px-10 py-10 rounded h-full min-h-400">
         <div className="flex justify-around items-center mx-20">
           <ToDoInput setInput={handleInput} />
           <button onClick={addSubject} className="transition duration-500 ease-in-out bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 ...">Add</button>
