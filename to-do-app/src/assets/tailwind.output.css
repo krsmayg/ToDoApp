@@ -23975,7 +23975,7 @@ video {
 }
 
 body {
-  background-color: #1abc9c;
+  background-color: #07090A;
 }
 
 .checkbox{
@@ -24026,8 +24026,8 @@ body {
 }
 
 .fade-out {
-  -webkit-animation: fade-out 2s linear infinite;
-          animation: fade-out 2s linear infinite;
+  -webkit-animation: fade-out .5s linear ;
+          animation: fade-out .5s linear ;
 }
 
 @-webkit-keyframes fade-out {
@@ -24043,6 +24043,46 @@ body {
   }
 
   to { opacity: 0;
+  }
+}
+
+.fly-away {
+  background-color: white;
+  -webkit-animation: fly-away  3s ease 0s infinite normal none;
+          animation: fly-away  3s ease 0s infinite normal none;
+}
+
+@-webkit-keyframes fly-away {
+  0.0%{
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  100%{
+    opacity: 0;
+    transform: translate(400px);
+  }
+
+  19.6%{
+    opacity: 1;
+    transform: translate(-40px);
+  }
+}
+
+@keyframes fly-away {
+  0.0%{
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  100%{
+    opacity: 0;
+    transform: translate(400px);
+  }
+
+  19.6%{
+    opacity: 1;
+    transform: translate(-40px);
   }
 }
 

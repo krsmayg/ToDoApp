@@ -8,7 +8,7 @@ module.exports = {
     ],
     theme: {
         extend: {},
-            minHeight: {
+          minHeight: {
            '0': '0',
            '1/4': '25%',
            '1/2': '50%',
@@ -16,7 +16,8 @@ module.exports = {
            'full': '100%',
            '400': '400px',
            '600': '600px',
-          }
+          },
+     
       },
       variants: {
         borderColor: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
