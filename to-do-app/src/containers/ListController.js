@@ -20,7 +20,11 @@ const ListController = (props) => {
     setInputValue(input);
   }
   const deleteSubject = (id) => {
-    props.deleteTask(id);
+    const el = document.getElementById(`itemList-${id}`);
+    el.className += " " + 'fly-away';
+    setTimeout(() => {
+      props.deleteTask(id);
+    }, 2000);
   }
   const updateSubject = (event, id) => {
     const newName = event.target.value;
