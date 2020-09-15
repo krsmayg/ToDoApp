@@ -52,6 +52,8 @@ const ListController = (props) => {
     ))
   }
   return (
+    <>
+     <h1 className="text-4xl uppercase text-center mt-5 text-white font-medium pixel-font">My List</h1>
     <div className="flex justify-center mt-20">
       <div className="py-10 px-5 rounded h-full min-h-400 w-full sm:w-11/12 lg:w-2/4">
         <div className="flex items-center justify-between md:justify-around">
@@ -69,6 +71,7 @@ const ListController = (props) => {
         {renderCompleteTasks()}
       </div> */}
     </div>
+    </>
   );
 }
 const mapStateToProps = (state) =>{

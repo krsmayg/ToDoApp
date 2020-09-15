@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
   background-color: #07090A;
 }
@@ -73,4 +75,7 @@ body {
       opacity: 1;
       transform: translate(-40px);
   }
+}
+.pixel-font {
+  font-family: 'Press Start 2P'
 }
