@@ -1,5 +1,6 @@
 const express = require('express');
 const toDoListRouter = require('./routes/toDoListRouter');
+const userRouter = require('./routes/userRouter');
 const morgan = require('morgan');
 const Task = require('./models/TasksModel');
 const app = express();
@@ -23,6 +24,7 @@ const testTask = new Task({
 // }).catch(err => console.log(err));
 
 app.use('/api/v1/toDoList',toDoListRouter);
+app.use('/api/v1/users/',userRouter);
 
 app.all('*', (req, res, next) =>{
   res.status(404).json({
