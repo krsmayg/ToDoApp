@@ -3,8 +3,10 @@ const toDoListRouter = require('./routes/toDoListRouter');
 const morgan = require('morgan');
 const Task = require('./models/TasksModel');
 const app = express();
-const cors = require('cors')
-// console.log(process.env.NODE_ENV);
+const cors = require('cors');
+const globalErrorHandler = require('./controller/errorController');
+
+
 if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
@@ -21,6 +23,16 @@ const testTask = new Task({
 // }).catch(err => console.log(err));
 
 app.use('/api/v1/toDoList',toDoListRouter);
+
+app.all('*', (req, res, next) =>{
+  res.status(404).json({
+    status: 'fail',
+    message: `Can't find ${req.originalUrl} on this server!`
+  })
+});
+
+app.use(globalErrorHandler);
+
 
 
 module.exports = app;
