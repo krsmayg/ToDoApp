@@ -9,7 +9,7 @@ const Login = (props) => {
     password: '',
   }; 
   const onSubmit =  values => {
-    console.log("Formik data: ", values)
+    // console.log("Formik data: ", values)
     
   };
   const validationSchema = Yup.object({
@@ -27,10 +27,11 @@ const Login = (props) => {
   }
   const errorStyle = "text-red-700 text-xl tracking-wider font-medium";
   const inputAuthStyle = "transition duration-500 ease-in-out text-3xl bg-transparent border-b-2  outline-none ml-4 tracking-wide transform focus:border-blue-400";
-  console.log('formik errors: ', formik.errors);
+  // console.log('formik errors: ', formik.errors);
   return ( 
-     <div className="flex w-full  h-screen justify-center items-center ">
-          <form onSubmit={formik.handleSubmit} className="text-white  h-64 flex flex-col">
+     <div className="flex w-full  justify-center items-center flex-col ">
+          <h1 className="text-4xl uppercase text-center mt-16 text-white font-medium pixel-font">Login Form</h1>
+          <form onSubmit={formik.handleSubmit} className="text-white  h-64 flex flex-col mt-8">
                 <div className="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" fill="#fff"/></svg>
                   <input {...formik.getFieldProps('email')} name="email"  placeholder="Write email" type="email" className={` ${inputAuthStyle} ${formik.touched.email && formik.errors.email ? 'border-red-700' : 'border-white'}`}></input>
@@ -41,7 +42,7 @@ const Login = (props) => {
                   <input {...formik.getFieldProps('password')} name="password"  placeholder="Qwerty" type="password" className={` ${inputAuthStyle} ${formik.touched.password && formik.errors.password ? 'border-red-700' : 'border-white'}`}></input>
                 </div>
                 {formik.touched.password && formik.errors.password ? <p className={errorStyle}>{formik.errors.password}</p> : null}
-              <button onClick={() =>handleLogin(formik.values)} type="submit" className="self-center transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 border-solid border border-gray-100 hover:bg-white hover:text-black outline-none mt-5 hover:border-0 ">Submit</button>
+              <button onClick={() =>handleLogin(formik.values)} type="submit" className="self-center transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 border-solid border border-gray-100 hover:bg-white hover:text-black outline-none mt-12 hover:border-0 ">Submit</button>
           </form>
      </div>
    );

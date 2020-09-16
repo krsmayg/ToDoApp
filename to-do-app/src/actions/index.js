@@ -1,5 +1,5 @@
 import axiosData from '../api/axiosConfig';
-import {FETCH_TASKS,CREATE_TASK,DELETE_TASK, UPDATE_TASK, LOGIN_USER} from '../actions/actionTypes';
+import {FETCH_TASKS,CREATE_TASK,DELETE_TASK, UPDATE_TASK, LOGIN_USER,SIGNUP_USER} from '../actions/actionTypes';
 import Cookies from 'universal-cookie';
 
 export const fetchTasks = () => async dispatch => {
@@ -41,7 +41,18 @@ export const loginUser = (userData) => async dispatch => {
     console.log(res.data);
     const cookies = new Cookies();
     cookies.set('jwt', res.data.token);
-    // console.log(cookies.get('jwt'));
   });
   dispatch({ type: LOGIN_USER, payload: {user: dataResponse.data.user, isLogin: true} });
+};
+
+
+export const signupUser = (userData) => async dispatch => {
+  let dataResponse = {}
+  console.log('hello from sign up', userData)
+  await axiosData.post('/users/signup',{...userData}).then(res => {
+    dataResponse = res.data;
+    const cookies = new Cookies();
+    cookies.set('jwt', res.data.token);
+  });
+  dispatch({ type: SIGNUP_USER, payload: {user: dataResponse.data.user, isLogin: true} });
 };
