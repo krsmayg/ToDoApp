@@ -1,5 +1,6 @@
 import axiosData from '../api/axiosConfig';
-import {FETCH_TASKS,CREATE_TASK,DELETE_TASK, UPDATE_TASK} from '../actions/actionTypes';
+import {FETCH_TASKS,CREATE_TASK,DELETE_TASK, UPDATE_TASK, LOGIN_USER} from '../actions/actionTypes';
+import Cookies from 'universal-cookie';
 
 export const fetchTasks = () => async dispatch => {
     let tasks = [];
@@ -7,7 +8,7 @@ export const fetchTasks = () => async dispatch => {
       tasks = res.data.data.tasks;
     });
     dispatch({ type: FETCH_TASKS, payload: tasks });
-}
+};
 
 export const createTask = (newTask) => async dispatch => {
   let task = {}
@@ -15,15 +16,32 @@ export const createTask = (newTask) => async dispatch => {
     task =  res.data.data.task;
   });
   dispatch({ type: CREATE_TASK, payload: task });
-}
+};
 
 export const deleteTask = (id) => async dispatch => {
   await axiosData.delete(`/toDoList/${id}`);
   dispatch({ type: DELETE_TASK, payload: id });
-}
+};
+
 export const updateTask = (id, updatedTask) => async dispatch => {
   await axiosData.patch(`/toDoList/${id}`, {
     name: updatedTask
   });
   dispatch({ type: UPDATE_TASK, payload: {id , updatedTask} });
-}
+};
+/////////////////////////////////
+
+export const loginUser = (userData) => async dispatch => {
+  let dataResponse = {}
+  await axiosData.post('/users/login', {
+    email: userData.email,
+    password: userData.password
+  }).then(res => {
+    dataResponse = res.data;
+    console.log(res.data);
+    const cookies = new Cookies();
+    cookies.set('jwt', res.data.token);
+    // console.log(cookies.get('jwt'));
+  });
+  dispatch({ type: LOGIN_USER, payload: {user: dataResponse.data.user, isLogin: true} });
+};

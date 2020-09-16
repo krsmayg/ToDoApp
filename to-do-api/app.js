@@ -6,15 +6,26 @@ const Task = require('./models/TasksModel');
 const app = express();
 const cors = require('cors');
 const globalErrorHandler = require('./controller/errorController');
-
+const mongoSanitize = require('express-mongo-sanitize')
 
 if(process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
 app.use(express.json());
-app.use(cors({origin:`http://localhost:${3000 || 3001}`, credentials: true}));
+// app.use(cors({origin:`http://localhost:${3000 || 3001}`, credentials: true}));
+app.use(cors());
+// Access-Control-Allow-Origin *
+// api.natours.com, front-end natours.com
+// app.use(cors({
+//   origin: 'https://www.natours.com'
+// }))
 
+app.options('*', cors());
+
+
+
+app.use(mongoSanitize());
 const testTask = new Task({
   name: 'Go to the store'
 });

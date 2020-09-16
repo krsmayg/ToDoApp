@@ -1,25 +1,30 @@
 import React from 'react';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-const Login = () => {
+import {connect} from 'react-redux';
+import {loginUser} from '../actions/index'
+const Login = (props) => {
   const initialValues = {
     email: '',
     password: '',
   }; 
   const onSubmit =  values => {
     console.log("Formik data: ", values)
+    
   };
-  
-const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Required').min(8, 'Password is too short - should be 8 chars minimum.')
-})
+  const validationSchema = Yup.object({
+      email: Yup.string().email('Invalid email format').required('Required'),
+      password: Yup.string().required('Required').min(8, 'Password is too short - should be 8 chars minimum.')
+  });
 
   const formik = useFormik({
     initialValues,
     onSubmit,
     validationSchema
   });
+  const handleLogin = (userData) => {
+    props.loginUser(userData);
+  }
   const errorStyle = "text-red-700 text-xl tracking-wider font-medium";
   const inputAuthStyle = "transition duration-500 ease-in-out text-3xl bg-transparent border-b-2  outline-none ml-4 tracking-wide transform focus:border-blue-400";
   console.log('formik errors: ', formik.errors);
@@ -36,10 +41,10 @@ const validationSchema = Yup.object({
                   <input {...formik.getFieldProps('password')} name="password"  placeholder="Qwerty" type="password" className={` ${inputAuthStyle} ${formik.touched.password && formik.errors.password ? 'border-red-700' : 'border-white'}`}></input>
                 </div>
                 {formik.touched.password && formik.errors.password ? <p className={errorStyle}>{formik.errors.password}</p> : null}
-              <button type="submit" className="self-center transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 border-solid border border-gray-100 hover:bg-white hover:text-black outline-none mt-5 hover:border-0 ">Submit</button>
+              <button onClick={() =>handleLogin(formik.values)} type="submit" className="self-center transition duration-500 ease-in-out text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 border-solid border border-gray-100 hover:bg-white hover:text-black outline-none mt-5 hover:border-0 ">Submit</button>
           </form>
      </div>
    );
 }
- 
-export default Login;
+
+export default connect(null, {loginUser})(Login);
