@@ -1,0 +1,81 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  background-color: #07090A;
+}
+ .checkbox{
+  opacity: 0;
+}
+ .custom-container{
+  position: relative;
+  font-family:sans-serif;
+  display: block;
+  padding-left: 60px;
+  font-size: 22px;
+  user-select: none;
+  margin-right: 20px;  
+}
+ .check-mark{
+  width: 30px;
+  height: 30px;
+  background-color: #E9F1FA ;
+  position: absolute;
+  left:0;
+  display: inline-block;
+  top: 0;
+  border-radius: 50%;
+}
+  .custom-container .checkbox:checked + .check-mark{
+  background-color: #16a085  ;
+  transition: .1s;
+}
+ .custom-container .checkbox:checked + .check-mark:after{
+  content: "";
+  position: absolute;
+  width: 10px;
+    transition: .1s;
+  height: 5px;
+  background: #16a085  ;
+  top:45%;
+  left:50%;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translate(-50%, -50%) rotate(-45deg);  
+}
+
+
+.fade-out {
+  animation: fade-out .5s linear ;
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fly-away {
+  background-color: white;
+  animation: fly-away  3s ease 0s infinite normal none;
+}
+@keyframes fly-away {
+    0.0%{
+      opacity: 1;
+      transform: translate(0);
+  }
+  100%{
+      opacity: 0;
+      transform: translate(400px);
+  }
+  19.6%{
+      opacity: 1;
+      transform: translate(-40px);
+  }
+}
+.pixel-font {
+  font-family: 'Press Start 2P'
+}
