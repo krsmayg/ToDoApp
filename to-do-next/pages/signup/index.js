@@ -31,7 +31,7 @@ const SignUp = (props) => {
   const handleSignUp = (userData) => {
     props.signupUser(userData);
   }
-  console.log('formik values: ', formik.values);
+  // console.log('formik values: ', formik.values);
   const errorStyle = "text-red-700 text-xl tracking-wider font-medium";
   const inputAuthStyle = "transition duration-500 ease-in-out text-3xl bg-transparent border-b-2  outline-none ml-4 tracking-wide transform focus:border-blue-400";
   return ( 
