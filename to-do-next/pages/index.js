@@ -13,7 +13,7 @@ const ListController = (props) => {
   },[])
 
   const addSubject = () => {
-    props.createTask(inputValue);
+    if(inputValue.length > 0) props.createTask(inputValue);
   }
   const handleInput = (event) => {
     const input = event.target.value;
@@ -58,7 +58,7 @@ const ListController = (props) => {
       <div className="py-10 px-5 rounded h-full min-h-400 w-full sm:w-11/12 lg:w-2/4">
         <div className="flex items-center justify-between md:justify-around">
           <ToDoInput setInput={handleInput} />
-          <button onClick={addSubject} className="transition duration-500 ease-in-out bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 ">Add</button>
+          <button onClick={addSubject} className="transition duration-500 ease-in-out bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110">Add</button>
         </div>
         <SubjectsList
           arrList={props.tasks}
