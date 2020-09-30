@@ -38,7 +38,6 @@ const ListController = (props) => {
   };
   function dateHandler(date, dateString) {
     console.log( dateString);
-    console.log(datee);
   }
   const addToCompleteList = (event, id) => {
     // const list = [...props.tasks];
