@@ -113,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_reducers_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../src/reducers/index */ "./src/reducers/index.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! redux-thunk */ "redux-thunk");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(redux_thunk__WEBPACK_IMPORTED_MODULE_5__);
-var _jsxFileName = "J:\\work\\ToDoApp\\to-do-next\\pages\\_app.js";
+var _jsxFileName = "J:\\work\\ToDoAppUdated\\ToDoApp\\to-do-next\\pages\\_app.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 

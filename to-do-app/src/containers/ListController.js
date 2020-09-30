@@ -2,35 +2,44 @@ import React, { useState,useEffect } from 'react';
 import ToDoInput from './../components/Inputs/ToDoInput';
 import SubjectsList from '../components/SubjectsList/SubjectsList';
 import {connect} from 'react-redux';
-import {fetchTasks, createTask,deleteTask,updateTask} from '../actions/index'
+import {fetchTasks, createTask,deleteTask,updateTask} from '../actions/index';
+import 'antd/dist/antd.css';
+
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
 const ListController = (props) => {
-  // const [subjectList, setSubjectList] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [completedList, setCompletedList] = useState([]);
+
+  const dateFormat = 'YYYY/MM/DD';
+  
   useEffect(() => {
     props.fetchTasks();
   },[])
 
   const addSubject = () => {
     props.createTask(inputValue);
-  }
+  };
   const handleInput = (event) => {
     const input = event.target.value;
     setInputValue(input);
-  }
+  };
   const deleteSubject = (id) => {
     const el = document.getElementById(`itemList-${id}`);
     el.className += " " + 'fly-away';
     setTimeout(() => {
       props.deleteTask(id);
     }, 2000);
-  }
+  };
   const updateSubject = (event, id) => {
     const newName = event.target.value;
     props.updateTask(id, newName);
+  };
+  function dateHandler(date, dateString) {
+    console.log( dateString);
+    console.log(datee);
   }
-
   const addToCompleteList = (event, id) => {
     // const list = [...props.tasks];
     // const completeListCopy = [...completedList];
@@ -45,12 +54,12 @@ const ListController = (props) => {
     //   setCompletedList(completeListCopy);
     // }, 2000);
 
-  }
+  };
   const renderCompleteTasks = () => {
     return completedList.map(item => (
       <p>{item}</p>
     ))
-  }
+  };
   return (
     <>
      <h1 className="text-4xl uppercase text-center mt-5 text-white font-medium pixel-font">My List</h1>
@@ -58,6 +67,7 @@ const ListController = (props) => {
       <div className="py-10 px-5 rounded h-full min-h-400 w-full sm:w-11/12 lg:w-2/4">
         <div className="flex items-center justify-between md:justify-around">
           <ToDoInput setInput={handleInput} />
+          <DatePicker defaultValue={moment('2020/01/01', dateFormat)} format={dateFormat} onChange={dateHandler} />
           <button onClick={addSubject} className="transition duration-500 ease-in-out bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transform hover:-translate-y-1 hover:scale-110 ">Add</button>
         </div>
         <SubjectsList
