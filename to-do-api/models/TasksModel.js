@@ -6,13 +6,12 @@ const taskSchema =  new mongoose.Schema({
       required: [true, 'Tasks should contain text'],
   },
   date: {
-    type: Date
+    type: Date,
+    default: Date.now()
   }
 });
 
 
 const Task  = mongoose.model('Task', taskSchema);
-
-
 
 module.exports = Task;
