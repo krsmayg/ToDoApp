@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  background-color: #07090A;
+  background-color: #07090A !important;
 }
  .checkbox{
   opacity: 0;

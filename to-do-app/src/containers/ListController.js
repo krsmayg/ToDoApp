@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 
-const ListController = (props) => {
+const ListController = React.memo((props) => {
   const dateFormat = 'YYYY/MM/DD';
   const [inputValue, setInputValue] = useState('');
   const [completedList, setCompletedList] = useState([]);
@@ -102,7 +102,7 @@ const ListController = (props) => {
       </div>
     </>
   );
-}
+});
 const mapStateToProps = (state) =>{
   return {
     tasks: state.tasks

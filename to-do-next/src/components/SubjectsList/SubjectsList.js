@@ -2,7 +2,7 @@ import React from 'react';
 import SubjectListItem from './SubjectListItem/SubjectListItem'
 const SubjectsList = (props) => {
   let listItems = 'Loading';
-  let arr = props.arrList['tasks']
+  let arr = props.arrList;
   if(arr) {
     listItems = arr.map((item) => {
       return (
